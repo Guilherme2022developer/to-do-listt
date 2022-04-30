@@ -1,14 +1,32 @@
 const express = require('express');
+const checkiListRouter = require('./src/routes/checkilist');
+
+
 
 const app = express();
+app.use(express.json());
 
-app.get('/', (req,res) => {
-    res.send('<h1>Minha lista de tarefas :) :)</h1>')
-})
+app.use('/checklists',checkiListRouter);
 
-app.get('/json', (req, res) => {
-    res.json({title: 'Tarefa x',done: true});
-})
+
+
+
+
+// const log = (req, res, next) => {
+//     console.log(req.body);
+//     console.log('Data: ${Date.now()}');
+//     next();
+// }
+// app.use(log);
+
+// app.get('/', (req, res) => {
+//     res.send('<h1>Minha lista de tarefas :) :)</h1>')
+// })
+
+// app.get('/json', (req, res) => {
+//     console.log(req.body);
+//     res.json({ title: 'Tarefa x', done: true });
+// })
 
 
 app.listen(3000, () => {
