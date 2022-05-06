@@ -7,8 +7,6 @@
 
         <section class="section">
             <div class="container">
-
-                
                 <div class="columns">
 
                     <div class="column is-four-fifths">
@@ -25,16 +23,16 @@
                         <div class="card has-background-white-ter">
                             <div class="card-content">
                                 <p class="subtitle is-size-5">
-                                    <%= checklists.name %>
+                                    <%= checklist.name %>
                                 </p>
                                 <p class="subtitle is-size-6">
-                                    <%= checklists.tasks.count %> tarefas
+                                   <%= checklist.tasks.count %> tarefas 
                                 </p>
                             </div>
                             <footer class="card-footer">
                                 <p class="card-footer-item">
                                     <span>
-                                        <a href="checklist/<%= checklist._id %>">Ver</a>
+                                        <a href="checklists/<%= checklist._id %>">Ver</a>
                                     </span>
                                 </p>
                                 <p class="card-footer-item">

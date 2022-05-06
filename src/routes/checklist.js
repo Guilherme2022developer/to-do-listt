@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
         let checklists = await Checklist.find({});
         res.status(200).render('checklists/index',{checklists: checklists})
     } catch (error) {
-        res.status(200).render('pages/error',{error: 'Erro ao exibir as Listas'});
+        res.status(500).render('pages/error',{error: 'Erro ao exibir as Listas'});
 
     }
 })
@@ -29,10 +29,8 @@ router.get('/new', async (req, res) => {
 
 
 
-
-
 router.post('/', async (req, res) => {
-    let { name } = req.body.Checklist;
+    let { name } = req.body.checklist;
     let checklist = new  Checklist({name})
 
     try {
