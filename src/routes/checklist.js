@@ -1,4 +1,5 @@
 const express = require('express');
+const res = require('express/lib/response');
 
 const router = express.Router();
 
@@ -26,6 +27,15 @@ router.get('/new', async (req, res) => {
     }
 })
 
+router.get('/:id/edit', async(req,res) => {
+    try { 
+        let checklist = await Checklist.findById(req.params.id);
+        res.status(200).render('checklists/edit', {checklist: checklist})
+    } catch (error) {
+        res.status(500).render('pages/error',{errors: 'Erro ao exibir a edição de Listas de tarefas'});
+  
+    }
+})
 
 
 
@@ -41,7 +51,7 @@ router.post('/', async (req, res) => {
     }
 
 
-})
+});
 
 
 router.get('/:id', async (req,res) => {
@@ -51,7 +61,7 @@ router.get('/:id', async (req,res) => {
     } catch (error) {
         res.status(500).render('pages/error',{errors: 'Erro ao exibir as Listas de tarefas'});
     }
-})
+});
 
 
 
@@ -63,12 +73,12 @@ router.get('/:id/edit', async(req, res) => {
         res.status(500).render('pages/error',{errors: 'Erro ao exibir as Listas de tarefas'});
 
     }
-})
+});
 
 
 router.put('/:id', async (req, res) => {
-    let { name } = req.body.Checklist;
-    let checklist = await Checklist.findByIdAndUpdate(req.params.id,);
+    let { name } = req.body.checklist;
+    let checklist = await Checklist.findById(req.params.id,);
 
 
     try {
@@ -80,7 +90,7 @@ router.put('/:id', async (req, res) => {
         res.status(422).render('checklists/edit', {checklist: {... checklist, errors}});
 
     }
-})
+});
 
 
 router.delete('/:id', async (req, res) => {
@@ -92,7 +102,7 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json(error)
 
     }
-})
+});
 
 
 module.exports = router;
